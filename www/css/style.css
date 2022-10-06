@@ -71,5 +71,7 @@
     }
     button{
         background-color: blue;
-        color: greenyellow
+        color: greenyellow;
+        font-family : Times;
+        border-radius: 20px;
     }
