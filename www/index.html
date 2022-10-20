@@ -163,6 +163,31 @@
         $('#btnC').prop('disabled', false);
         
     }
+        // 経過後に表示される文字の処理
+    function word1_1(){
+       $("#minuteStr").html("予定時間が経過しました!");
+
+    }
+    function word1_2(){
+       $("#minuteStr").html(" ");
+    }
+       
+    function word2_1(){
+       $("#secondStr").html("※タイマーを止めるにはStopボタンを押してください");
+
+    }
+    function word2_2(){
+       $("#secondStr").html("スタートを押してください");
+
+    } 
+    function word2_3(){
+       $("#secondStr").html("　");
+
+    }
+    function word2_4(){
+        $("#secondStr").html("再会するにはStartボタンを押してください");
+    }
+
 
     // Alarmの処理
     function alarm(){
@@ -183,13 +208,15 @@
     function btnAClick(e){
         active = true;
         startTime = new Date();
+        word2_1();
         
         
     }
 
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
-          active = false;    
+          active = false;
+          word2_4();    
     }
 
     // ButtonCがクリックされた時の処理
@@ -199,6 +226,9 @@
         period = 60* parseInt( $("#minute").val() )+ parseInt( $("#second").val() );
         $("#time").html("経過時間: 0");
         $("#remain").html("残り時間: "+period);
+        word1_2();
+        word2_2();
+
         
     }
     
@@ -214,6 +244,9 @@
             if(rest<=0){
                 active = false;
                 alarm();
+                word1_1();
+                word2_3();
+
             }
 
 
@@ -227,8 +260,8 @@
 <body>
     <canvas id="mycanvas" width="200" height="200">Test</canvas>
 
-    <div id="minuteStr">〇</div>
-    <div id="secondStr">〇</div>
+    <div id="minuteStr" class="out">音が鳴るタイマーです</div>
+    <div id="secondStr" class ="out">数字が書かれているボタンで時間を<br>セットしてください</div>
 
     <div id="remain">Remaining time</div>
     <div id="time">Time</div>
